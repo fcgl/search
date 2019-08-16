@@ -15,9 +15,8 @@
 This build should work for both macOS and Linux
 
 1. Download docker for your operating system
-2. From project root run the following commands:
-  * **Build:** `docker build -t search-service .`
-  * **Run:** `docker run -d=true -p 8084:8084 search-service`
+2. From project root run the following command (this will build containers for service and db):
+   docker-compose up --build
 
 ## Health Endpoint
 
