@@ -15,3 +15,8 @@ services:
     - "27017:27017"
     volumes:
     - ./data/db:/data/db
+
+  mongo-seed:
+     build: ./mongo/mongo-seed
+     links:
+      - db
