@@ -7,10 +7,10 @@ services:
     ports:
       - "8084:8084"
     depends_on:
-      - hk-mongodb
-  hk-mongodb:
+      - search-mongodb
+  search-mongodb:
     image: mongo:3.6
-    container_name: "hk-mongodb"
+    container_name: "search-mongodb"
     ports:
       - 27017:27017
     volumes:
