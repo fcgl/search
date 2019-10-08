@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/dev")
 public class IndexController {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
