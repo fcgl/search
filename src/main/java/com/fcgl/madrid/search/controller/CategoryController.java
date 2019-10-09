@@ -40,7 +40,7 @@ public class CategoryController {
      *
      */
     @GetMapping(path="/search")
-    public ResponseEntity<Response<List<Product>>> GetCategoryProducts(CategorySearchRequest request) {
+    public ResponseEntity<Response<List<Product>>> GetCategoryProducts(@Valid CategorySearchRequest request) {
         return null;
     }
 }

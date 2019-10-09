@@ -1,9 +1,11 @@
 package com.fcgl.madrid.search.payload.request;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 public class UserSearchRequest {
-    private Long userId;
     @NotNull
+    private Long userId;
+    @NotEmpty
     private String query;
 
     public UserSearchRequest(Long userId, String query) {

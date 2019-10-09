@@ -31,7 +31,7 @@ public class UserSearchController {
      * TODO: Based on what we find out on elastic search. We might have to make an api request to elastic search from here as well.
      */
     @GetMapping(path = "/query")
-    public ResponseEntity<Response> addUserSearchQuery(UserSearchRequest request) {
+    public ResponseEntity<Response> addUserSearchQuery(@Valid UserSearchRequest request) {
         //Call a function is userSearchService
         return null;
     }

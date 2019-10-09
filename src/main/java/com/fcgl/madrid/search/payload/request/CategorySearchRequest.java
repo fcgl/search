@@ -16,7 +16,7 @@ public class CategorySearchRequest {
     //Will probably have to be added to one or all of the Merchant Data Models
     private Integer cityid;
 
-    CategorySearchRequest(Integer categoryId, Integer cityid, Integer page, Integer size) {
+    public CategorySearchRequest(Integer categoryId, Integer cityid, Integer page, Integer size) {
         this.categoryId = categoryId;
         this.cityid = cityid;
         this.page = page;

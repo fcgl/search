@@ -31,7 +31,7 @@ public class ProductController {
      * about security in this endpoint as it will be taken care of
      */
     @PostMapping(path = "/productPopularityIndex")
-    public ResponseEntity<Response<InternalStatus>> updatePopularityIndex(@RequestBody List<ProductBody> request) {
+    public ResponseEntity<Response<InternalStatus>> updatePopularityIndex(@Valid @RequestBody List<ProductBody> request) {
         return null;
     }
 }
