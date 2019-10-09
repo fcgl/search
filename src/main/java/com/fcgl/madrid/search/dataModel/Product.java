@@ -4,7 +4,14 @@ import org.springframework.data.annotation.Id;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Should Product have a countryId?
+ *
+ * We should have some logic that updates the popularity index based on how many
+ * people add it to their shopping list. The shopping list is in a different service.
+ * So perhaps we will have the popularityIndex be calculated in the ShoppingList Service
+ * and then make an API request to update tha popularityIndex here...
+ */
 public class Product {
 
     @Id
@@ -16,6 +23,7 @@ public class Product {
     public int barcode;
     public String default_image;
     public List<String> categories;
+    public float popularityIndex;
 
     public Product() {}
 
@@ -29,6 +37,20 @@ public class Product {
 		this.barcode = barcode;
 		this.default_image = default_image;
 		this.categories = categories;
+		this.popularityIndex = 0;
+	}
+
+    public Product(int id, String name, Double retail_price, Date added_on, Date last_updated, int barcode,
+			String default_image, List<String> categories, float popularityIndex) {
+		this.id = id;
+		this.name = name;
+		this.retail_price = retail_price;
+		this.added_on = added_on;
+		this.last_updated = last_updated;
+		this.barcode = barcode;
+		this.default_image = default_image;
+		this.categories = categories;
+		this.popularityIndex = popularityIndex;
 	}
 
     @Override
@@ -42,6 +64,7 @@ public class Product {
                 ", barcode=" + barcode +
                 ", default_image='" + default_image + '\'' +
                 ", categories=" + categories +
+                ", popularityIndex=" + popularityIndex +
                 '}';
     }
 }

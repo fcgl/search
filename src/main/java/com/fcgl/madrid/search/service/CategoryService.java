@@ -1,4 +1,4 @@
-package com.fcgl.madrid.search.util;
+package com.fcgl.madrid.search.service;
 
 import com.fcgl.madrid.search.dataModel.Category;
 import com.fcgl.madrid.search.payload.InternalStatus;
