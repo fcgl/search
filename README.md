@@ -28,5 +28,8 @@ Elastic Search info endpoint: http://localhost:9200
 Elastic Search health endpoint: http://localhost:9200/_cat/health
 Kibana: http://localhost:5601
 
+**Note:** Might have to increase the memory in your Docker preferences in order to get Elastic Search, and as a result the app,
+to work. Works properly on 4.5GB of memory but could work on lower. 
+
 **Reference:** http://codingfundas.com/setting-up-elasticsearch-6-8-with-kibana-and-x-pack-security-enabled/index.html
 
