@@ -22,4 +22,11 @@ This build should work for both macOS and Linux
 
 Confirm everything was ran correctly by going to the following endpoint: 
   * http://localhost:8084/health/v1/marco
+  
+## Elastic Search
+Elastic Search info endpoint: http://localhost:9200
+Elastic Search health endpoint: http://localhost:9200/_cat/health
+Kibana: http://localhost:5601
+
+**Reference:** http://codingfundas.com/setting-up-elasticsearch-6-8-with-kibana-and-x-pack-security-enabled/index.html
 
