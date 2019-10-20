@@ -28,7 +28,6 @@ public class UserSearchController {
      */
     @PostMapping(path = "/query")
     public ResponseEntity<Response<String>> addUserSearchQuery(@Valid @RequestBody UserSearchRequest request) {
-        Objects.requireNonNull(request);
         return userSearchService.addQueryToTable(request);
     }
 
