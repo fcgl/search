@@ -4,14 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fcgl.madrid.search.dataModel.Category;
 import com.fcgl.madrid.search.dataModel.Merchant;
 import com.fcgl.madrid.search.dataModel.Product;
-import com.fcgl.madrid.search.dataModel.elasticsearch.Department;
-import com.fcgl.madrid.search.dataModel.elasticsearch.Employee;
-import com.fcgl.madrid.search.dataModel.elasticsearch.Organization;
 import com.fcgl.madrid.search.dataModel.elasticsearch.ProductSearch;
 import com.fcgl.madrid.search.repository.CategoryRepository;
 import com.fcgl.madrid.search.repository.MerchantRepository;
 import com.fcgl.madrid.search.repository.ProductRepository;
-import com.fcgl.madrid.search.repository.elasticsearch.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +23,12 @@ import java.util.*;
 public class SampleDataSet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleDataSet.class);
-    private static final String INDEX_NAME = "sample";
-    private static final String INDEX_TYPE = "employee";
 
     @Autowired
     ElasticsearchTemplate template;
 
     @Autowired
     ProductRepository productRepository;
-
-    @Autowired
-    MongoClient mongoClient;
 
     @Autowired
     private ProductRepository repo;
