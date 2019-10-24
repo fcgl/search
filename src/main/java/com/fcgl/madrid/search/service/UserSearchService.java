@@ -1,5 +1,6 @@
 package com.fcgl.madrid.search.service;
 
+import com.fcgl.madrid.search.dataModel.UserId;
 import com.fcgl.madrid.search.dataModel.UserSearch;
 import com.fcgl.madrid.search.payload.InternalStatus;
 import com.fcgl.madrid.search.payload.request.UserSearchRequest;
@@ -18,11 +19,11 @@ import java.util.List;
 public class UserSearchService {
     //TODO: Add necessary functions
 
-    private UserSearchRepository repo;
+    private UserSearchRepository userSearchRepo;
 
     @Autowired
-    public UserSearchService(UserSearchRepository repo) {
-        this.repo = repo;
+    public UserSearchService(UserSearchRepository userSearchRepo) {
+        this.userSearchRepo = userSearchRepo;
     }
 
     public ResponseEntity<Response<String>> addQueryToTable(UserSearchRequest request) {
@@ -30,8 +31,8 @@ public class UserSearchService {
         String query = request.getQuery();
         Date date = new Date();
 
-        UserSearch model = new UserSearch(userId, query, date);
-        UserSearch resp = repo.save(model); // what does this return if it is successful??
+        UserSearch model = new UserSearch(new UserId(userId), query, date);
+        UserSearch resp = userSearchRepo.save(model);
 
         InternalStatus status;
         HttpStatus respStatus;
@@ -52,13 +53,15 @@ public class UserSearchService {
 
     }
 
-    public ResponseEntity<Response<String>> searchByUserId(Long userId) {
+    public ResponseEntity<Response<String>> searchByUserId(UserId userId) {
 
-        List<UserSearch> queryObjects = repo.findByUserId(userId);
+        List<UserSearch> queryObjects = userSearchRepo.findByUserId(userId);
 
         List<String> returnList = new ArrayList<>();
         queryObjects.forEach(obj -> {
-            if (obj != null) returnList.add(obj.query);
+            if (obj != null) {
+                returnList.add(obj.query);
+            }
         });
 
         Response response = new Response<>(InternalStatus.OK, returnList.toString());

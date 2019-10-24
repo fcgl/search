@@ -3,11 +3,11 @@ import java.util.Date;
 
 public class UserSearch {
 
-    public Long userId;
+    public UserId userId;
     public String query;
     public Date addedOn;
 
-    public UserSearch(Long userId, String query, Date addedOn) {
+    public UserSearch(UserId userId, String query, Date addedOn) {
         this.userId = userId;
         this.query = query;
         this.addedOn = addedOn;
@@ -17,7 +17,7 @@ public class UserSearch {
     public String toString() {
         return "UserSearch{" +
 
-                ", userId=" + userId +
+                ", userId=" + userId.userId +
                 ", query='" + query + '\'' +
                 ", addedOn=" + addedOn +
                 '}';

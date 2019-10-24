@@ -1,5 +1,6 @@
 package com.fcgl.madrid.search.controller;
 
+import com.fcgl.madrid.search.dataModel.UserId;
 import com.fcgl.madrid.search.payload.request.UserSearchRequest;
 import com.fcgl.madrid.search.payload.response.Response;
 import com.fcgl.madrid.search.service.UserSearchService;
@@ -33,6 +34,6 @@ public class UserSearchController {
 
     @GetMapping(path = "/query") //TODO returns a 500 not sure why
     public ResponseEntity<Response<String>> getQueriesForUser(@Valid @PathVariable Long userId) {
-        return userSearchService.searchByUserId(userId);
+        return userSearchService.searchByUserId(new UserId(userId));
     }
 }
