@@ -1,10 +1,10 @@
-package com.fcgl.madrid.search.dataModel;
+package com.fcgl.madrid.search.payload.request;
 import javax.validation.constraints.NotNull;
 
 public class UserId {
 
     @NotNull
-    private Long userId;
+    Long userId;
 
     public UserId(Long userId) {
         this.userId = userId;

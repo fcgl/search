@@ -1,8 +1,9 @@
 package com.fcgl.madrid.search.controller;
 
-import com.fcgl.madrid.search.dataModel.UserId;
+import com.fcgl.madrid.search.payload.request.UserId;
 import com.fcgl.madrid.search.payload.request.UserSearchRequest;
 import com.fcgl.madrid.search.payload.response.Response;
+import com.fcgl.madrid.search.payload.response.SearchHistoryResponse;
 import com.fcgl.madrid.search.service.UserSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class UserSearchController {
     }
 
     @GetMapping(path = "/query") //TODO returns a 500 not sure why
-    public ResponseEntity<Response<String>> getQueriesForUser(@Valid UserId request) {
+    public ResponseEntity<Response<SearchHistoryResponse>> getQueriesForUser(@Valid UserId request) {
             return userSearchService.searchByUserId(request);
     }
 }
