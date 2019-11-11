@@ -8,6 +8,7 @@ services:
       - "8084:8084"
     depends_on:
       - search-mongodb
+      - elasticsearch
   search-mongodb:
     image: mongo:3.6
     container_name: "search-mongodb"
@@ -21,18 +22,22 @@ services:
       - MONGODB_USER="user"
       - MONGODB_USER="pass"
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
     ports:
       - 9200:9200
-    volumes:
-      - ./docker/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+#    volumes:
+#      - ./docker/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
 
-  kibana:
-    depends_on:
-      - elasticsearch
-    image: docker.elastic.co/kibana/kibana:6.8.0
-    ports:
-      - 5601:5601
-    volumes:
-      - ./docker/kibana.yml:/usr/share/kibana/config/kibana.yml
+#  kibana:
+#    depends_on:
+#      - elasticsearch
+#    image: docker.elastic.co/kibana/kibana:6.8.0
+#    ports:
+#      - 5601:5601
+#    volumes:
+#      - ./docker/kibana.yml:/usr/share/kibana/config/kibana.yml
 

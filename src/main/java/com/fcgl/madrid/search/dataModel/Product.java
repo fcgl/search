@@ -12,6 +12,7 @@ import java.util.List;
  * So perhaps we will have the popularityIndex be calculated in the ShoppingList Service
  * and then make an API request to update tha popularityIndex here...
  */
+//TODO: Add Average Price
 public class Product {
 
     @Id

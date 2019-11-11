@@ -12,12 +12,14 @@ RUN mvn -B dependency:resolve dependency:resolve-plugins
 #Copy source code
 COPY src /build/src
 # Build application
-RUN mvn package
+RUN mvn package -DskipTests
 
 
 FROM openjdk:8-slim as runtime
 # Expose the port
 EXPOSE 8084
+EXPOSE 9200
+EXPOSE 9300
 #Set app home folder
 ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
