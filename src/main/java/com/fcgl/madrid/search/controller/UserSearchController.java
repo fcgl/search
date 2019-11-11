@@ -33,7 +33,7 @@ public class UserSearchController {
     }
 
     @GetMapping(path = "/query") //TODO returns a 500 not sure why
-    public ResponseEntity<Response<String>> getQueriesForUser(@Valid @PathVariable Long userId) {
-        return userSearchService.searchByUserId(new UserId(userId));
+    public ResponseEntity<Response<String>> getQueriesForUser(@Valid UserId request) {
+            return userSearchService.searchByUserId(request);
     }
 }
