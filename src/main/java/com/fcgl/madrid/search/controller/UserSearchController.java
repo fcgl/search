@@ -1,18 +1,15 @@
 package com.fcgl.madrid.search.controller;
 
-import com.fcgl.madrid.search.dataModel.Category;
-import com.fcgl.madrid.search.dataModel.Product;
-import com.fcgl.madrid.search.payload.request.CategorySearchRequest;
+import com.fcgl.madrid.search.dataModel.UserId;
 import com.fcgl.madrid.search.payload.request.UserSearchRequest;
 import com.fcgl.madrid.search.payload.response.Response;
-import com.fcgl.madrid.search.service.CategoryService;
 import com.fcgl.madrid.search.service.UserSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/search/userSearch/v1")
@@ -30,9 +27,13 @@ public class UserSearchController {
      *
      * TODO: Based on what we find out on elastic search. We might have to make an api request to elastic search from here as well.
      */
-    @GetMapping(path = "/query")
-    public ResponseEntity<Response> addUserSearchQuery(@Valid UserSearchRequest request) {
-        //Call a function is userSearchService
-        return null;
+    @PostMapping(path = "/query")
+    public ResponseEntity<Response<String>> addUserSearchQuery(@Valid @RequestBody UserSearchRequest request) {
+        return userSearchService.addQueryToTable(request);
+    }
+
+    @GetMapping(path = "/query") //TODO returns a 500 not sure why
+    public ResponseEntity<Response<String>> getQueriesForUser(@Valid UserId request) {
+            return userSearchService.searchByUserId(request);
     }
 }

@@ -1,25 +1,23 @@
 package com.fcgl.madrid.search.dataModel;
-import org.springframework.data.annotation.Id;
 import java.util.Date;
 
 public class UserSearch {
 
-    @Id
-    public int id;
-    public Integer userId;
+    public UserId userId;
     public String query;
     public Date addedOn;
 
-    public UserSearch(int id, String categoryName, String description, Date addedOn, Date lastUpdated) {
-        this.id = id;
+    public UserSearch(UserId userId, String query, Date addedOn) {
+        this.userId = userId;
+        this.query = query;
         this.addedOn = addedOn;
     }
 
     @Override
     public String toString() {
         return "UserSearch{" +
-                "id=" + id +
-                ", userId=" + userId +
+
+                ", userId=" + userId.userId +
                 ", query='" + query + '\'' +
                 ", addedOn=" + addedOn +
                 '}';
