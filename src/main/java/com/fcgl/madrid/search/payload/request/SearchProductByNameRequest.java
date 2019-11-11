@@ -5,9 +5,11 @@ public class SearchProductByNameRequest {
 
     @NotEmpty
     private String name;
+    private Long userId;
 
-    public SearchProductByNameRequest(String name) {
+    public SearchProductByNameRequest(String name, Long userId) {
         this.name = name;
+        this.userId = userId;
     }
 
     public String getName() {
@@ -16,5 +18,13 @@ public class SearchProductByNameRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
