@@ -22,7 +22,7 @@ public class IndexController {
     @GetMapping(value = "/populate")
     public Response<String> populate() {
         sampleDataSet.populateData();
-        return new Response<>(InternalStatus.OK, "Done");
+        return new Response<String>(InternalStatus.OK, "Done");
 
     }
 }

@@ -3,6 +3,7 @@ package com.fcgl.madrid.search.service;
 import com.fcgl.madrid.search.dataModel.elasticsearch.ProductSearch;
 import com.fcgl.madrid.search.payload.InternalStatus;
 import com.fcgl.madrid.search.payload.request.SearchProductByNameRequest;
+import com.fcgl.madrid.search.payload.response.ProductSearchResponse;
 import com.fcgl.madrid.search.payload.response.Response;
 import com.fcgl.madrid.search.repository.ProductRepository;
 import com.fcgl.madrid.search.repository.elasticsearch.ProductSearchRepository;
@@ -25,9 +26,9 @@ public class ProductService {
         this.productSearchRepository = productSearchRepository;
     }
 
-    public ResponseEntity<Response<List<ProductSearch>>> searchByName(SearchProductByNameRequest request) {
+    public ResponseEntity<Response<ProductSearchResponse>> searchByName(SearchProductByNameRequest request) {
         List<ProductSearch> productSearches = this.productSearchRepository.findByName(request.getName());
-        Response<List<ProductSearch>> response = new Response<>(InternalStatus.OK, productSearches);
+        Response<ProductSearchResponse> response = new Response<ProductSearchResponse>(InternalStatus.OK, new ProductSearchResponse(productSearches));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
