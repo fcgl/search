@@ -33,3 +33,22 @@ to work. Works properly on 4.5GB of memory but could work on lower.
 
 **Reference:** http://codingfundas.com/setting-up-elasticsearch-6-8-with-kibana-and-x-pack-security-enabled/index.html
 
+**Create Index Api:** https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
+    * Can do it through typical http request (curl, postman)
+    * Or, http://localhost:5601/app/kibana#/dev_tools/console
+    
+#### Configuration
+Sometimes the node address changes... TODO: Figure out where to set the host to avoid this manual step
+1. After you run the command `docker-compose up --build` if your requests to elasticsearch don't work you need to do
+the following:
+    * Make this request: `curl http://localhost:9200/_nodes`
+    * Should return something similar to this: 
+    `{"_nodes":{"total":1,"successful":1,"failed":0},"cluster_name":"docker-cluster","nodes":{"amcNzpPYS-u5eNw0eHXDPg":{"name":"amcNzpP","transport_address":"192.168.112.2:9300"`
+    * Copy the transport_address and change the variables `TRANSPORT_ADDRESS` in `config/ElasticConfiguration` to it
+    * Build and run again `docker-compose up --build`
+
+
+## Populate Data
+
+1. To populate data into the database and elasticsearch make an api request to the following endpoint:
+    * `http://localhost:8084/dev/populate`
