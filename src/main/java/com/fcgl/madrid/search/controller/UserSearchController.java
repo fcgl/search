@@ -1,5 +1,6 @@
 package com.fcgl.madrid.search.controller;
 
+import com.fcgl.madrid.search.payload.request.SearchHistoryRequest;
 import com.fcgl.madrid.search.payload.request.UserId;
 import com.fcgl.madrid.search.payload.request.UserSearchRequest;
 import com.fcgl.madrid.search.payload.response.Response;
@@ -42,19 +43,7 @@ public class UserSearchController {
      * @return list of results
      */
     @GetMapping(path = "query") //expect page index starting from 1, so subtract one for querying purposes
-    public ResponseEntity<Response<SearchHistoryResponse>> getRecentQueriesForUser(@Valid UserId id,
-                                                                                   @RequestParam(required = false) Integer pageSize,
-                                                                                   @RequestParam(required = false) Integer page) {
-        // handle default page size value
-        if (pageSize == null) {
-            pageSize = 10;
-        }
-        // handle default page value
-        if (page == null) {
-            page = 0;
-        } else {
-            page = page - 1;
-        }
-        return userSearchService.searchByUserIdRecent(id, pageSize, page);
+    public ResponseEntity<Response<SearchHistoryResponse>> getRecentQueriesForUser(@Valid SearchHistoryRequest searchHistoryRequest) {
+        return userSearchService.searchByUserIdRecent(searchHistoryRequest);
     }
 }

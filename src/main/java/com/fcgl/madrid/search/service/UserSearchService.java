@@ -1,5 +1,6 @@
 package com.fcgl.madrid.search.service;
 
+import com.fcgl.madrid.search.payload.request.SearchHistoryRequest;
 import com.fcgl.madrid.search.payload.request.UserId;
 import com.fcgl.madrid.search.dataModel.UserSearch;
 import com.fcgl.madrid.search.payload.InternalStatus;
@@ -63,19 +64,21 @@ public class UserSearchService {
     /**
      * This method returns queries in a paginated format made by a user.
      *
-     * @param id       User id
-     * @param pageSize Number of entries per page
-     * @param page     Which page number
+     * @param searchHistoryRequest Request object that contains the user id, page size and page
      * @return response
      */
-    public ResponseEntity<Response<SearchHistoryResponse>> searchByUserIdRecent(UserId id, int pageSize, int page) {
+    public ResponseEntity<Response<SearchHistoryResponse>> searchByUserIdRecent(SearchHistoryRequest searchHistoryRequest) {
         // Paginate List
+        UserId id = new UserId(searchHistoryRequest.getUserId());
+        int pageSize = searchHistoryRequest.getPageSize();
+        int page = searchHistoryRequest.getPage();
+
         Pageable pageableRequest = PageRequest.of(page, pageSize);
         List<UserSearch> searchHistory = userSearchRepo.findByUserIdOrderByAddedOnDesc(id, pageableRequest);
         // Get total number of records
         int records = userSearchRepo.countByUserId(id);
         // Format Response
-        PaginatedResponse paginatedResponse = new PaginatedResponse<>(new SearchHistoryResponse(searchHistory), pageSize, page + 1, records); // to user we want to show non-zero index
+        PaginatedResponse paginatedResponse = new PaginatedResponse<>(new SearchHistoryResponse(searchHistory), pageSize, page, records);
         Response response = new Response<>(InternalStatus.OK, paginatedResponse);
         return new ResponseEntity<Response<SearchHistoryResponse>>(response, HttpStatus.OK);
     }
