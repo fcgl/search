@@ -1,24 +1,25 @@
 package com.fcgl.madrid.search.service;
 
+import com.fcgl.madrid.search.payload.request.SearchHistoryRequest;
 import com.fcgl.madrid.search.payload.request.UserId;
 import com.fcgl.madrid.search.dataModel.UserSearch;
 import com.fcgl.madrid.search.payload.InternalStatus;
 import com.fcgl.madrid.search.payload.request.UserSearchRequest;
+import com.fcgl.madrid.search.payload.response.PaginatedResponse;
 import com.fcgl.madrid.search.payload.response.Response;
 import com.fcgl.madrid.search.payload.response.SearchHistoryResponse;
 import com.fcgl.madrid.search.repository.UserSearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserSearchService {
-    //TODO: Add necessary functions
 
     private UserSearchRepository userSearchRepo;
 
@@ -27,6 +28,12 @@ public class UserSearchService {
         this.userSearchRepo = userSearchRepo;
     }
 
+    /**
+     * This method adds the given query to the UserSearch table.
+     *
+     * @param request UserSearchRequest
+     * @return Status
+     */
     public ResponseEntity<Response<String>> addQueryToTable(UserSearchRequest request) {
         Long userId = request.getUserId();
         String query = request.getQuery();
@@ -54,9 +61,25 @@ public class UserSearchService {
 
     }
 
-    public ResponseEntity<Response<SearchHistoryResponse>> searchByUserId(UserId userId) {
-        List<UserSearch> searchHistory = userSearchRepo.findByUserId(userId);
-        Response response = new Response<SearchHistoryResponse>(InternalStatus.OK, new SearchHistoryResponse(searchHistory));
+    /**
+     * This method returns queries in a paginated format made by a user.
+     *
+     * @param searchHistoryRequest Request object that contains the user id, page size and page
+     * @return response
+     */
+    public ResponseEntity<Response<SearchHistoryResponse>> searchByUserIdRecent(SearchHistoryRequest searchHistoryRequest) {
+        // Paginate List
+        UserId id = new UserId(searchHistoryRequest.getUserId());
+        int pageSize = searchHistoryRequest.getPageSize();
+        int page = searchHistoryRequest.getPage();
+
+        Pageable pageableRequest = PageRequest.of(page, pageSize);
+        List<UserSearch> searchHistory = userSearchRepo.findByUserIdOrderByAddedOnDesc(id, pageableRequest);
+        // Get total number of records
+        int records = userSearchRepo.countByUserId(id);
+        // Format Response
+        PaginatedResponse paginatedResponse = new PaginatedResponse<>(new SearchHistoryResponse(searchHistory), pageSize, page, records);
+        Response response = new Response<>(InternalStatus.OK, paginatedResponse);
         return new ResponseEntity<Response<SearchHistoryResponse>>(response, HttpStatus.OK);
     }
 }
