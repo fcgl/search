@@ -33,11 +33,10 @@ public class ElasticConfiguration {
     @Bean
     public RestHighLevelClient client() {
 
-        RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("search-search-test-1-h5hc6r4hkwoigv3lw5doxcj7xm.us-east-1.es.amazonaws.com")));
+        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder
+                (new HttpHost("search-search-es-uieedt56umpvagl7gykddc4z5u.us-east-1.es.amazonaws.com",-1, "https")));
 
         return client;
-
     }
 
     @Bean
