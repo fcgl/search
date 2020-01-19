@@ -11,6 +11,7 @@ import com.fcgl.madrid.search.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class SampleDataSet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleDataSet.class);
 
     @Autowired
-    ElasticsearchTemplate template;
+    ElasticsearchRestTemplate template;
 
     @Autowired
     ProductRepository productRepository;

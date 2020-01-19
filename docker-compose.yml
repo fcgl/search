@@ -6,29 +6,29 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8084:8084"
-    depends_on:
-      - search-mongodb
-      - elasticsearch
-  search-mongodb:
-    image: mongo:3.6
-    container_name: "search-mongodb"
-    ports:
-      - 27017:27017
-    volumes:
-      - ./data/db:/data/db"
-    environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-      - MONGODB_USER="user"
-      - MONGODB_USER="pass"
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
-    ports:
-      - 9200:9200
-      - 9300:9300
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
+#    depends_on:
+#      - search-mongodb
+#      - elasticsearch
+#  search-mongodb:
+#    image: mongo:3.6
+#    container_name: "search-mongodb"
+#    ports:
+#      - 27017:27017
+#    volumes:
+#      - ./data/db:/data/db"
+#    environment:
+#      - MONGO_DATA_DIR=/data/db
+#      - MONGO_LOG_DIR=/dev/null
+#      - MONGODB_USER="user"
+#     - MONGODB_USER="pass"
+#  elasticsearch:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
+#    ports:
+#      - 9200:9200
+#      - 9300:9300
+#    environment:
+#      - discovery.type=single-node
+#      - xpack.security.enabled=false
 #    volumes:
 #      - ./docker/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
 
