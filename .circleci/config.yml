@@ -84,7 +84,7 @@ jobs:
             export ECS_CONTAINER_DEFINITION_NAME="${AWS_RESOURCE_NAME_PREFIX}-service"
             export EXECUTION_ROLE_ARN="arn:aws:iam::$AWS_ACCOUNT_ID:role/${AWS_RESOURCE_NAME_PREFIX}-ecs-execution-role"
             ls -a
-            ./deploy.sh
+            sudo ./deploy.sh
       - run:
           name: Test deployment (Please manually tear down AWS resources after use, if desired)
           command: |
