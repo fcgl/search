@@ -53,7 +53,7 @@ jobs:
             . venv/bin/activate
             #pip install -r requirements.txt
             pip install awscli --upgrade --user
-            apt-get install awscli
+            sudo apt-get install awscli
       #- save_cache:
       #    key: v1-{{ checksum "requirements.txt" }}
       #    paths:
