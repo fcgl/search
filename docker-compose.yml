@@ -22,8 +22,8 @@ services:
 #      - MONGODB_USER="user"
 #     - MONGODB_USER="pass"
 #  elasticsearch:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
-#    ports:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.4
+##    ports:
 #      - 9200:9200
 #      - 9300:9300
 #    environment:
