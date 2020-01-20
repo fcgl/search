@@ -44,18 +44,19 @@ jobs:
       - setup_remote_docker
       - attach_workspace:
           at: workspace
-      - restore_cache:
-          key: v1-{{ checksum "requirements.txt" }}
+      #- restore_cache:
+      #    key: v1-{{ checksum "requirements.txt" }}
       - run:
           name: Install awscli
           command: |
             python3 -m venv venv
             . venv/bin/activate
             #pip install -r requirements.txt
-      - save_cache:
-          key: v1-{{ checksum "requirements.txt" }}
-          paths:
-            - "venv"
+            pip install awscli --upgrade --user
+      #- save_cache:
+      #    key: v1-{{ checksum "requirements.txt" }}
+      #    paths:
+      #      - "venv"
       - run:
           name: Load image
           command: |
