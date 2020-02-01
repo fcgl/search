@@ -46,7 +46,7 @@ make_task_def(){
 			"essential": true,
 			"memory": 200,
 			"cpu": 10,
-            "requiresCompatibilities" : "FARGATE"
+            "requiresCompatibilities" : "FARGATE",
 			"portMappings": [
 				{
 					"containerPort": 8084,
