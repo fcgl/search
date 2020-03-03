@@ -17,7 +17,7 @@ RUN mvn package -DskipTests
 
 FROM openjdk:8-slim as runtime
 # Expose the port
-EXPOSE 8084
+EXPOSE 8080
 EXPOSE 9200
 EXPOSE 9300
 #Set app home folder
