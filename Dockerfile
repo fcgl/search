@@ -25,7 +25,7 @@ ENV APP_HOME /app
 #Possibility to set JVM options (https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)
 ENV JAVA_OPTS=""
 # Set ENV variables
-ENV PORT=8084
+ENV PORT=8080
 ENV DISCOVERY_URL="http://discovery:8761"
 
 #Create base app folder

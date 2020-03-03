@@ -1,6 +1,6 @@
 # Server config
 server:
-  port: ${PORT:8084}
+  port: ${PORT:8080}
 
 # Spring config
 spring:
@@ -17,7 +17,7 @@ spring:
 
   elasticsearch:
     rest:
-      uris: localhost:9200
+      uris: https://search-search-test-bucmbzybhlmqfexpwwa76odnra.us-east-1.es.amazonaws.com/:9200
 
 initial-import:
   enabled: true
