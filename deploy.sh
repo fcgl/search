@@ -34,6 +34,7 @@ deploy_cluster() {
             return 0
         fi
     done
+    
     echo "Service update took too long."
     return 1
 }
