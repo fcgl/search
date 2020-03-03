@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8084:8084"
+      - "8080:8080"
 #    depends_on:
 #      - search-mongodb
 #      - elasticsearch

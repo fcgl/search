@@ -50,7 +50,7 @@ make_task_def(){
             "requiresCompatibilities" : ["FARGATE"],
 			"portMappings": [
 				{
-					"containerPort": 8084,
+					"containerPort": 8080,
 					"hostPort": 80,
 				}
 			]
