@@ -18,6 +18,15 @@ This build should work for both macOS and Linux
 2. From project root run the following command (this will build containers for service and db):
    docker-compose up --build
 
+## Deploy App with Continous Integration
+
+1. See https://github.com/CircleCI-Public/circleci-demo-aws-ecs-ecr for initial setup with terraform
+   and environment variables such as AWS_ACCESS_KEY. 
+2. Setup CircleCI account and repository with desired branch (master)
+3. Commit a change
+4. CircleCI should build docker image and upload to ECR
+5. And then deploy to a AWS Fargate Container in ECS
+
 ## Health Endpoint
 
 Confirm everything was ran correctly by going to the following endpoint: 
@@ -37,15 +46,6 @@ to work. Works properly on 4.5GB of memory but could work on lower.
     * Can do it through typical http request (curl, postman)
     * Or, http://localhost:5601/app/kibana#/dev_tools/console
     
-#### Configuration
-Sometimes the node address changes... TODO: Figure out where to set the host to avoid this manual step
-1. After you run the command `docker-compose up --build` if your requests to elasticsearch don't work you need to do
-the following:
-    * Make this request: `curl http://localhost:9200/_nodes`
-    * Should return something similar to this: 
-    `{"_nodes":{"total":1,"successful":1,"failed":0},"cluster_name":"docker-cluster","nodes":{"amcNzpPYS-u5eNw0eHXDPg":{"name":"amcNzpP","transport_address":"192.168.112.2:9300"`
-    * Copy the transport_address and change the variables `TRANSPORT_ADDRESS` in `config/ElasticConfiguration` to it
-    * Build and run again `docker-compose up --build`
 
 
 ## Populate Data
